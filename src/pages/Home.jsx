@@ -103,7 +103,7 @@ export default function Home() {
       </nav>
 
       {/* ─── Hero ─── */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-black">
         {/* Hero background */}
         <div
           className="absolute inset-0"
@@ -111,6 +111,7 @@ export default function Home() {
             backgroundImage: `url(https://cdn.phototourl.com/free/2026-03-28-3b9fa222-1c20-4571-a844-9b73373b696e.jpg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center 40%',
+            backgroundColor: 'black',
           }}
         />
 
