@@ -111,7 +111,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <nav className="bg-black px-6 py-4 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-4">
-          <Link to="/"><GandyLogo markSize={32} /></Link>
+          <Link to="/"><GandyLogo /></Link>
           <span className="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full">ADMIN</span>
         </div>
         <button onClick={handleSignOut} className="text-white/70 hover:text-white text-sm transition-colors">

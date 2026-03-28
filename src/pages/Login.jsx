@@ -27,7 +27,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <nav className="bg-black px-6 py-4 flex items-center justify-between">
-        <Link to="/"><GandyLogo markSize={32} /></Link>
+        <Link to="/"><GandyLogo /></Link>
       </nav>
 
       <div className="flex-1 flex items-center justify-center px-4 py-12">

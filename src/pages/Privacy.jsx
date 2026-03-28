@@ -6,7 +6,7 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <nav className="bg-black px-6 py-4">
-        <Link to="/"><GandyLogo markSize={32} /></Link>
+        <Link to="/"><GandyLogo /></Link>
       </nav>
       <div className="flex-1 max-w-2xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h1>

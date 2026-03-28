@@ -4,44 +4,6 @@ import { supabase } from '../lib/supabase'
 import Footer from '../components/Footer'
 import GandyLogo from '../components/GandyLogo'
 
-const TRUST_ITEMS = [
-  'PGA Certified Instructor',
-  'All Skill Levels Welcome',
-  'Easy Online Booking',
-  'Personalized Coaching',
-  '5-Star Rated',
-  'Junior Programs',
-  'PGA Certified Instructor',
-  'All Skill Levels Welcome',
-  'Easy Online Booking',
-  'Personalized Coaching',
-  '5-Star Rated',
-  'Junior Programs',
-]
-
-const SERVICES = [
-  {
-    num: '01',
-    title: 'Individual Lessons',
-    desc: 'One-on-one coaching tailored to your swing, goals, and skill level. The fastest way to improve.',
-  },
-  {
-    num: '02',
-    title: 'Group Clinics',
-    desc: 'Fun, affordable group sessions covering fundamentals for 2–6 players. Great for friends or families.',
-  },
-  {
-    num: '03',
-    title: 'Junior Golf',
-    desc: 'Age-appropriate programs to build confidence and a lifelong love of the game.',
-  },
-  {
-    num: '04',
-    title: 'On-Course Playing Lessons',
-    desc: 'Take your range game to the course with real-round instruction and strategy.',
-  },
-]
-
 export default function Home() {
   const [user, setUser] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -65,38 +27,24 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-gray-900">
 
-      {/* ─── Navbar ─── */}
-      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12">
-        <GandyLogo />
-        <div className="flex items-center gap-2">
+      {/* ─── Nav ─── */}
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-6 md:px-16 h-16 flex items-center justify-between">
+        <GandyLogo dark />
+        <div className="flex items-center gap-4">
           {user ? (
             <>
               {isAdmin && (
-                <Link to="/admin" className="text-white/70 hover:text-white text-sm font-medium transition-colors px-4 py-2">
-                  Admin
-                </Link>
+                <Link to="/admin" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Admin</Link>
               )}
-              <Link to="/dashboard" className="text-white/70 hover:text-white text-sm font-medium transition-colors px-4 py-2">
-                My Lessons
-              </Link>
-              <button
-                onClick={handleSignOut}
-                className="text-white/70 hover:text-white text-sm font-medium transition-colors px-4 py-2"
-              >
-                Sign Out
-              </button>
+              <Link to="/dashboard" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">My Lessons</Link>
+              <button onClick={handleSignOut} className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Sign Out</button>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-white/70 hover:text-white text-sm font-medium transition-colors px-4 py-2">
-                Log In
-              </Link>
-              <Link
-                to="/signup"
-                className="bg-sky-500 hover:bg-sky-400 text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all shadow-lg shadow-sky-500/30"
-              >
+              <Link to="/login" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Log In</Link>
+              <Link to="/signup" className="text-sm font-semibold bg-gray-900 text-white px-5 py-2 rounded hover:bg-gray-700 transition-colors">
                 Book a Lesson
               </Link>
             </>
@@ -105,203 +53,127 @@ export default function Home() {
       </nav>
 
       {/* ─── Hero ─── */}
-      <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
+      <section className="px-6 md:px-16 pt-20 pb-24 max-w-6xl mx-auto">
+        <div className="flex flex-col gap-8">
 
-        {/* Dot grid texture */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-          }}
-        />
-
-        {/* Radial glow */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, #0ea5e9, transparent)' }}
-        />
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl mx-auto">
-
-          {/* Logo mark — large */}
-          <div className="hero-anim-1 mb-8">
-            <GandyLogo variant="mark" markSize={90} />
-          </div>
-
-          {/* Eyebrow */}
-          <p className="hero-anim-2 text-sky-400 text-xs font-bold tracking-[0.35em] uppercase mb-5">
-            PGA-Certified Golf Instruction
+          {/* Tag line */}
+          <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">
+            PGA-Certified Instruction · All Skill Levels
           </p>
 
-          {/* Headline */}
-          <h1 className="hero-anim-3 text-white font-bold leading-tight mb-6"
-            style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)', fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Elevate Your<br />
-            <span className="text-sky-300">Golf Game</span>
+          {/* Big headline */}
+          <h1
+            className="text-gray-900 font-bold leading-[1.0]"
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
+            }}
+          >
+            Better golf<br />starts here.
           </h1>
 
-          {/* Sub */}
-          <p className="hero-anim-4 text-white/50 text-lg max-w-md mb-10 leading-relaxed">
-            Expert lessons for all ages and skill levels.
-            Book online in seconds — no phone calls needed.
-          </p>
-
-          {/* CTAs */}
-          <div className="hero-anim-4 flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/book"
-              className="bg-sky-500 hover:bg-sky-400 text-white font-bold px-10 py-4 rounded-full text-lg transition-all hover:scale-105 shadow-xl shadow-sky-500/30"
-            >
-              Book a Lesson
-            </Link>
-            <Link
-              to="/calendar"
-              className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white font-semibold px-10 py-4 rounded-full text-lg border border-white/15 transition-all hover:scale-105"
-            >
-              View Availability
-            </Link>
+          {/* Divider + subtext + CTA on one row */}
+          <div className="flex flex-col sm:flex-row sm:items-end gap-8 pt-4 border-t border-gray-100">
+            <p className="text-gray-500 text-base leading-relaxed max-w-xs">
+              Expert coaching for beginners through competitive players. Book online — no phone calls needed.
+            </p>
+            <div className="flex gap-3 sm:ml-auto shrink-0">
+              <Link
+                to="/book"
+                className="bg-gray-900 hover:bg-gray-700 text-white text-sm font-semibold px-7 py-3 rounded transition-colors"
+              >
+                Book a Lesson
+              </Link>
+              <Link
+                to="/calendar"
+                className="border border-gray-200 hover:border-gray-400 text-gray-700 text-sm font-semibold px-7 py-3 rounded transition-colors"
+              >
+                View Schedule
+              </Link>
+            </div>
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
-          <div className="w-px h-10 bg-white animate-pulse" />
-          <span className="text-white text-[10px] tracking-widest uppercase">Scroll</span>
         </div>
       </section>
 
-      {/* ─── Trust Marquee ─── */}
-      <div className="bg-[#0a0a0a] border-y border-white/5 py-4 overflow-hidden">
-        <div className="marquee-track flex gap-12 whitespace-nowrap w-max">
-          {TRUST_ITEMS.map((item, i) => (
-            <span key={i} className="text-white/30 text-[11px] font-bold tracking-[0.2em] uppercase flex items-center gap-3">
-              <span className="w-1 h-1 rounded-full bg-sky-500 inline-block" />
-              {item}
-            </span>
+      {/* ─── Credentials strip ─── */}
+      <div className="border-t border-b border-gray-100 py-5 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto flex flex-wrap gap-x-10 gap-y-2">
+          {['PGA Certified Instructor', '5-Star Rated', 'All Skill Levels Welcome', 'Individual & Group', 'Junior Programs Available'].map(item => (
+            <span key={item} className="text-xs text-gray-400 font-medium tracking-wide">{item}</span>
           ))}
         </div>
       </div>
 
       {/* ─── Services ─── */}
-      <section className="py-24 px-6 md:px-12 bg-white">
-        <div className="max-w-5xl mx-auto">
+      <section className="px-6 md:px-16 py-20 max-w-6xl mx-auto">
+        <div className="flex items-baseline justify-between mb-10">
+          <h2 className="text-xl font-bold text-gray-900">Lesson Options</h2>
+          <Link to="/book" className="text-sm text-gray-400 hover:text-gray-900 transition-colors">Book any →</Link>
+        </div>
 
-          <div className="flex items-center gap-4 mb-16">
-            <div className="w-8 h-px bg-sky-400" />
-            <p className="text-sky-500 text-xs font-bold tracking-[0.25em] uppercase">What We Offer</p>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100 rounded-lg overflow-hidden">
+          {[
+            { title: 'Individual Lessons', desc: 'Private one-on-one sessions focused on your specific goals and skill level.' },
+            { title: 'Group Clinics', desc: 'Small group sessions for 2–6 players. Great for friends and families.' },
+            { title: 'Junior Golf', desc: 'Fun, age-appropriate programs that build fundamentals and confidence.' },
+            { title: 'Playing Lessons', desc: 'On-course instruction for strategy, shot selection, and course management.' },
+          ].map((s) => (
+            <Link key={s.title} to="/book" className="group bg-white p-7 hover:bg-gray-50 transition-colors">
+              <h3 className="font-semibold text-gray-900 text-sm mb-3 group-hover:text-black">{s.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
+              <span className="inline-block mt-5 text-xs text-gray-300 group-hover:text-gray-500 transition-colors">Book →</span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16 leading-tight max-w-sm"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Lesson<br />Options
-          </h2>
-
-          <div className="divide-y divide-gray-100">
-            {SERVICES.map((s, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-8 py-10 group cursor-default"
-              >
-                <span className="text-gray-100 font-bold text-5xl leading-none shrink-0 w-14 text-right tabular-nums group-hover:text-sky-100 transition-colors duration-300">
-                  {s.num}
-                </span>
-                <div className="flex-1">
-                  <h3 className="text-gray-900 font-bold text-xl mb-2 group-hover:text-sky-600 transition-colors duration-300">
-                    {s.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
-                    {s.desc}
-                  </p>
-                </div>
-                <div className="shrink-0 w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-sky-500 group-hover:border-sky-500 transition-all duration-300">
-                  <svg className="w-3.5 h-3.5 text-gray-300 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
+      {/* ─── How it works — horizontal ─── */}
+      <section className="border-t border-gray-100 px-6 md:px-16 py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-12">How to book</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              { n: '1', title: 'Create an account', body: 'Sign up with your name and email. Takes 30 seconds.' },
+              { n: '2', title: 'Pick a date & time', body: 'Browse the live calendar and choose an open slot.' },
+              { n: '3', title: 'Show up & improve', body: 'Tell us your goals. We handle the rest.' },
+            ].map(s => (
+              <div key={s.n} className="flex gap-5 items-start">
+                <span className="text-2xl font-black text-gray-200 leading-none shrink-0 mt-0.5">{s.n}</span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm mb-1">{s.title}</p>
+                  <p className="text-gray-400 text-sm leading-relaxed">{s.body}</p>
                 </div>
               </div>
             ))}
           </div>
-
           <div className="mt-12">
             <Link
-              to="/book"
-              className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white font-bold px-8 py-4 rounded-full transition-all hover:scale-105"
+              to="/signup"
+              className="inline-block bg-gray-900 hover:bg-gray-700 text-white text-sm font-semibold px-8 py-3 rounded transition-colors"
             >
-              Book Any Lesson
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+              Get Started
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ─── How It Works ─── */}
-      <section className="py-24 px-6 md:px-12 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-
-          <div className="flex items-center gap-4 mb-16">
-            <div className="w-8 h-px bg-sky-400" />
-            <p className="text-sky-500 text-xs font-bold tracking-[0.25em] uppercase">Simple Process</p>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16 max-w-xs leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            How to<br />Book
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-            {[
-              { step: '01', title: 'Create an Account', desc: 'Sign up in seconds — just your name and email.' },
-              { step: '02', title: 'Pick a Date & Time', desc: 'Check the live calendar and choose an open slot that works for you.' },
-              { step: '03', title: 'Show Up & Improve', desc: "Tell us your goals and experience. We'll take it from there." },
-            ].map((s, i) => (
-              <div key={i} className="flex flex-col gap-5">
-                <div className="w-12 h-12 rounded-2xl bg-black text-sky-400 font-bold text-sm flex items-center justify-center">
-                  {s.step}
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">{s.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CTA ─── */}
-      <section className="relative bg-black py-28 px-6 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{ background: 'radial-gradient(ellipse 80% 80% at 50% 50%, #0ea5e9, transparent)' }}
-        />
-        <div className="relative z-10 max-w-2xl mx-auto text-center">
-          <p className="text-sky-400 text-xs font-bold tracking-[0.3em] uppercase mb-4">Get Started</p>
-          <h2 className="text-white text-4xl md:text-5xl font-bold mb-5 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Ready to Lower<br />Your Score?
-          </h2>
-          <p className="text-white/40 text-lg mb-10 max-w-md mx-auto leading-relaxed">
-            Check availability and book your first golf lesson online — no phone calls needed.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/book"
-              className="bg-sky-500 hover:bg-sky-400 text-white font-bold px-10 py-4 rounded-full text-lg transition-all hover:scale-105 shadow-xl shadow-sky-500/30"
-            >
-              Book Now
-            </Link>
-            <Link
-              to="/calendar"
-              className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white font-semibold px-10 py-4 rounded-full text-lg border border-white/15 transition-all hover:scale-105"
-            >
-              View Calendar
-            </Link>
-          </div>
-        </div>
+      {/* ─── Bottom CTA ─── */}
+      <section className="px-6 md:px-16 py-20 max-w-6xl mx-auto text-center">
+        <h2
+          className="text-gray-900 font-bold mb-4 leading-tight"
+          style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+        >
+          Ready to lower your score?
+        </h2>
+        <p className="text-gray-400 text-base mb-8 max-w-sm mx-auto">
+          Check availability and book your first lesson online today.
+        </p>
+        <Link
+          to="/book"
+          className="inline-block bg-gray-900 hover:bg-gray-700 text-white font-semibold px-10 py-3.5 rounded text-sm transition-colors"
+        >
+          Book a Lesson
+        </Link>
       </section>
 
       <Footer />

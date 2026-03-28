@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white/40 text-sm py-10 px-6">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-        <GandyLogo markSize={30} />
+        <GandyLogo />
         <div className="flex flex-col sm:flex-row items-center gap-4 text-xs">
           <a
             href="mailto:info@gandygolf.com"

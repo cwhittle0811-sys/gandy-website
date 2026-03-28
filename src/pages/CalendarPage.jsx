@@ -95,7 +95,7 @@ export default function CalendarPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       <nav className="bg-black px-6 py-4 flex items-center justify-between shadow-lg">
-        <Link to="/"><GandyLogo markSize={32} /></Link>
+        <Link to="/"><GandyLogo /></Link>
         <div className="flex gap-3 items-center">
           {session ? (
             <Link to="/dashboard" className="text-white/80 hover:text-white text-sm font-medium px-4 py-2 transition-colors">My Lessons</Link>
