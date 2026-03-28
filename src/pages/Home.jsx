@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import Footer from '../components/Footer'
 
@@ -42,7 +42,6 @@ const SERVICES = [
 ]
 
 export default function Home() {
-  const navigate = useNavigate()
   const [user, setUser] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
 
@@ -109,7 +108,7 @@ export default function Home() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(https://cdn.phototourl.com/free/2026-03-28-9a9ee016-b372-497b-8d9e-b8dabd3eaebf.jpg)`,
+            backgroundImage: `url(https://cdn.phototourl.com/free/2026-03-28-3b9fa222-1c20-4571-a844-9b73373b696e.jpg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center 40%',
           }}
