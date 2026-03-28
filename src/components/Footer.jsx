@@ -7,7 +7,7 @@ export default function Footer() {
         Questions? Email us at{' '}
         <a
           href="mailto:info@gandygolf.com"
-          className="text-amber-400 hover:text-amber-300 transition-colors font-medium"
+          className="text-sky-300 hover:text-sky-200 transition-colors font-medium"
         >
           info@gandygolf.com
         </a>

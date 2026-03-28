@@ -85,7 +85,7 @@ export default function Home() {
               </Link>
               <button
                 onClick={handleSignOut}
-                className="bg-amber-400 hover:bg-amber-300 text-gray-900 text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-lg"
+                className="bg-white hover:bg-sky-50 text-gray-900 text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-lg"
               >
                 Sign Out
               </button>
@@ -95,7 +95,7 @@ export default function Home() {
               <Link to="/login" className="text-white/90 hover:text-white text-sm font-medium transition-colors px-4 py-2">
                 Log In
               </Link>
-              <Link to="/signup" className="bg-amber-400 hover:bg-amber-300 text-gray-900 text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-lg">
+              <Link to="/signup" className="bg-white hover:bg-sky-50 text-gray-900 text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-lg">
                 Book a Lesson
               </Link>
             </>
@@ -107,7 +107,7 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Hero background */}
         <div
-          className="hero-kenburns absolute inset-0"
+          className="absolute inset-0"
           style={{
             backgroundImage: `url(https://cdn.phototourl.com/free/2026-03-28-9a9ee016-b372-497b-8d9e-b8dabd3eaebf.jpg)`,
             backgroundSize: 'cover',
@@ -122,12 +122,12 @@ export default function Home() {
         <div className="relative z-20 flex flex-col items-center text-center px-6 max-w-3xl mx-auto">
           {/* Gold accent line */}
           <div className="hero-anim-1 flex justify-center mb-6">
-            <div className="gold-line h-[3px] bg-amber-400 rounded-full" />
+            <div className="accent-line h-[3px] bg-white rounded-full" />
           </div>
 
           <h1 className="hero-anim-2 text-white text-4xl md:text-6xl font-bold leading-tight mb-4 drop-shadow-lg">
             Elevate Your Game With<br />
-            <span className="text-amber-400">Expert Golf Lessons</span>
+            <span className="text-sky-300">Expert Golf Lessons</span>
           </h1>
 
           <p className="hero-anim-3 text-white/80 text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
@@ -138,7 +138,7 @@ export default function Home() {
           <div className="hero-anim-4 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/book"
-              className="btn-shimmer bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+              className="bg-white hover:bg-sky-50 text-gray-900 font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
             >
               Book a Lesson
             </Link>
@@ -153,10 +153,10 @@ export default function Home() {
       </section>
 
       {/* ─── Trust Marquee ─── */}
-      <div className="bg-[#0f2340] py-3 overflow-hidden">
+      <div className="bg-[#1d4ed8] py-3 overflow-hidden">
         <div className="marquee-track flex gap-10 whitespace-nowrap w-max">
           {TRUST_ITEMS.map((item, i) => (
-            <span key={i} className="text-amber-400 text-sm font-semibold tracking-wider uppercase px-4">
+            <span key={i} className="text-sky-300 text-sm font-semibold tracking-wider uppercase px-4">
               {item}
             </span>
           ))}
@@ -167,16 +167,16 @@ export default function Home() {
       <section className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-amber-500 font-semibold uppercase tracking-widest text-sm mb-3">What We Offer</p>
+            <p className="text-sky-500 font-semibold uppercase tracking-widest text-sm mb-3">What We Offer</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Lesson Options</h2>
-            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
+            <div className="w-16 h-1 bg-white mx-auto rounded-full" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICES.map((s, i) => (
               <div
                 key={i}
-                className="group bg-slate-50 hover:bg-[#0f2340] rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-default"
+                className="group bg-slate-50 hover:bg-[#1d4ed8] rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-default"
               >
                 <div className="text-4xl mb-4">{s.icon}</div>
                 <h3 className="font-bold text-gray-900 group-hover:text-white text-lg mb-2 transition-colors">
@@ -194,9 +194,9 @@ export default function Home() {
       {/* ─── How It Works ─── */}
       <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-amber-500 font-semibold uppercase tracking-widest text-sm mb-3">Simple Process</p>
+          <p className="text-sky-500 font-semibold uppercase tracking-widest text-sm mb-3">Simple Process</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How to Book</h2>
-          <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full mb-14" />
+          <div className="w-16 h-1 bg-white mx-auto rounded-full mb-14" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -205,7 +205,7 @@ export default function Home() {
               { step: '03', title: 'Show Up & Improve', desc: 'Tell us your goals and experience. We\'ll take it from there.' },
             ].map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-[#0f2340] text-amber-400 font-bold text-lg flex items-center justify-center shadow-lg">
+                <div className="w-14 h-14 rounded-full bg-[#1d4ed8] text-sky-300 font-bold text-lg flex items-center justify-center shadow-lg">
                   {s.step}
                 </div>
                 <h3 className="font-bold text-gray-900 text-lg">{s.title}</h3>
@@ -217,7 +217,7 @@ export default function Home() {
       </section>
 
       {/* ─── CTA Banner ─── */}
-      <section className="bg-[#0f2340] py-16 px-6 text-center">
+      <section className="bg-[#1d4ed8] py-16 px-6 text-center">
         <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
           Ready to Lower Your Score?
         </h2>
@@ -227,7 +227,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/book"
-            className="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all hover:scale-105"
+            className="bg-white hover:bg-sky-50 text-gray-900 font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all hover:scale-105"
           >
             Book Now
           </Link>

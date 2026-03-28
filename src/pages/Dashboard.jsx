@@ -49,7 +49,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <nav className="bg-[#0f2340] px-6 py-4 flex items-center justify-between shadow-lg">
+      <nav className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between shadow-lg">
         <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
         <div className="flex items-center gap-4">
           <span className="text-white/60 text-sm hidden sm:block">{user?.email}</span>
@@ -62,12 +62,12 @@ export default function Dashboard() {
       <div className="flex-1 max-w-3xl mx-auto w-full px-4 py-12">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-amber-500 font-semibold uppercase tracking-widest text-sm mb-1">My Account</p>
+            <p className="text-sky-500 font-semibold uppercase tracking-widest text-sm mb-1">My Account</p>
             <h1 className="text-2xl font-bold text-gray-900">My Lessons</h1>
           </div>
           <Link
             to="/book"
-            className="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold px-5 py-2.5 rounded-full text-sm transition-all shadow"
+            className="bg-white hover:bg-sky-50 text-[#1d4ed8] font-bold px-5 py-2.5 rounded-full text-sm transition-all shadow"
           >
             + Book Lesson
           </Link>
@@ -80,7 +80,7 @@ export default function Dashboard() {
             <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-10 text-center text-gray-400">
               <p className="text-3xl mb-3">⛳</p>
               <p className="font-medium">No upcoming lessons</p>
-              <Link to="/book" className="text-amber-500 text-sm font-semibold mt-2 inline-block hover:text-amber-600">
+              <Link to="/book" className="text-sky-500 text-sm font-semibold mt-2 inline-block hover:text-sky-600">
                 Book your first lesson →
               </Link>
             </div>
@@ -117,7 +117,7 @@ function BookingCard({ booking, onCancel, isPast }) {
     <div className={`bg-white rounded-2xl shadow-sm border p-6 transition-all ${isPast ? 'opacity-60 border-gray-100' : 'border-gray-100 hover:shadow-md'}`}>
       <div className="flex items-start justify-between gap-4">
         <div className="flex gap-4 items-start">
-          <div className="bg-[#0f2340] text-white rounded-xl px-3 py-2 text-center min-w-[52px] shrink-0">
+          <div className="bg-[#1d4ed8] text-white rounded-xl px-3 py-2 text-center min-w-[52px] shrink-0">
             <div className="text-xs font-semibold opacity-70 uppercase">{format(date, 'MMM')}</div>
             <div className="text-2xl font-bold leading-none">{format(date, 'd')}</div>
           </div>

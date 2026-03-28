@@ -80,7 +80,7 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <nav className="bg-[#0f2340] px-6 py-4 flex items-center justify-between shadow-lg">
+      <nav className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between shadow-lg">
         <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
         <div className="flex gap-3 items-center">
           {session ? (
@@ -88,19 +88,19 @@ export default function CalendarPage() {
           ) : (
             <Link to="/login" className="text-white/80 hover:text-white text-sm font-medium px-4 py-2 transition-colors">Log In</Link>
           )}
-          <Link to="/book" className="bg-amber-400 hover:bg-amber-300 text-gray-900 text-sm font-bold px-5 py-2 rounded-full transition-all">Book Now</Link>
+          <Link to="/book" className="bg-white hover:bg-sky-50 text-[#1d4ed8] text-sm font-bold px-5 py-2 rounded-full transition-all">Book Now</Link>
         </div>
       </nav>
 
       <div className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
-          <p className="text-amber-500 font-semibold uppercase tracking-widest text-sm mb-2">Live Schedule</p>
+          <p className="text-sky-500 font-semibold uppercase tracking-widest text-sm mb-2">Live Schedule</p>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Availability Calendar</h1>
           <p className="text-gray-500">Green = available · Red = fully booked. Click a day to see open time slots.</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="bg-[#0f2340] px-6 py-4 flex items-center justify-between">
+          <div className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between">
             <button
               onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
               className="text-white/70 hover:text-white transition-colors text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
@@ -150,12 +150,12 @@ export default function CalendarPage() {
                       ${blocked ? 'bg-gray-100 cursor-not-allowed' : ''}
                       ${inMonth && !past && !unavailable ? 'hover:bg-green-50 cursor-pointer' : ''}
                       ${inMonth && !past && booked ? 'bg-red-50 cursor-not-allowed' : ''}
-                      ${selected ? 'ring-2 ring-inset ring-amber-400 bg-amber-50' : ''}
+                      ${selected ? 'ring-2 ring-inset ring-[#1d4ed8] bg-sky-50' : ''}
                     `}
                   >
                     <span className={`
                       w-8 h-8 flex items-center justify-center rounded-full text-sm
-                      ${today ? 'bg-[#0f2340] text-white font-bold' : ''}
+                      ${today ? 'bg-[#1d4ed8] text-white font-bold' : ''}
                       ${blocked ? 'text-gray-400' : ''}
                       ${inMonth && !past && !today && !blocked ? 'text-gray-700' : ''}
                     `}>
@@ -178,7 +178,7 @@ export default function CalendarPage() {
               <Link
                 to="/book"
                 state={{ date: format(selectedDay, 'yyyy-MM-dd') }}
-                className="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold px-5 py-2 rounded-full text-sm transition-all"
+                className="bg-white hover:bg-sky-50 text-gray-900 font-bold px-5 py-2 rounded-full text-sm transition-all"
               >
                 Book This Day
               </Link>
@@ -209,7 +209,7 @@ export default function CalendarPage() {
           <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-400" />Available</div>
           <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-400" />Fully Booked</div>
           <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-gray-400" />Unavailable</div>
-          <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-amber-400" />Selected</div>
+          <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-white" />Selected</div>
         </div>
       </div>
       <Footer />

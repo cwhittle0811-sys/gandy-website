@@ -17,17 +17,6 @@ h1, h2 {
   font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Ken Burns zoom */
-@keyframes kenburns {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.08); }
-}
-.hero-kenburns {
-  animation: kenburns 7s ease-in-out infinite alternate;
-  transform-origin: center center;
-  will-change: transform;
-}
-
 /* Hero text entrance */
 @keyframes hero-fade-up {
   from { opacity: 0; transform: translateY(32px); }
@@ -45,20 +34,9 @@ h1, h2 {
 }
 .marquee-track { animation: marquee 30s linear infinite; }
 
-/* Gold accent line */
+/* Accent line */
 @keyframes expand-line {
   from { width: 0; }
   to   { width: 80px; }
 }
-.gold-line { animation: expand-line 1s cubic-bezier(0.22,1,0.36,1) 0.9s both; }
-
-/* Button shimmer */
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-.btn-shimmer {
-  background: linear-gradient(90deg, #f59e0b 40%, #fcd34d 50%, #f59e0b 60%);
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
-}
+.accent-line { animation: expand-line 1s cubic-bezier(0.22,1,0.36,1) 0.9s both; }

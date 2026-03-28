@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <nav className="bg-[#0f2340] px-6 py-4">
+      <nav className="bg-[#1d4ed8] px-6 py-4">
         <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
       </nav>
       <div className="flex-1 max-w-2xl mx-auto px-6 py-12">
