@@ -115,8 +115,11 @@ export default function Home() {
           }}
         />
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-10" />
+        {/* Radial vignette — fades grey edges to black */}
+        <div className="absolute inset-0 z-10" style={{ background: 'radial-gradient(ellipse at center, transparent 35%, black 75%)' }} />
+
+        {/* Dark top/bottom overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-10" />
 
         {/* Content */}
         <div className="relative z-20 flex flex-col items-center text-center px-6 max-w-3xl mx-auto">
