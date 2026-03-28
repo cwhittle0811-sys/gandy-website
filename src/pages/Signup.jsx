@@ -1,3 +1,4 @@
+import GandyLogo from '../components/GandyLogo'
 import Footer from '../components/Footer'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -38,8 +39,8 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <nav className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
+      <nav className="bg-black px-6 py-4 flex items-center justify-between">
+        <Link to="/"><GandyLogo markSize={32} /></Link>
       </nav>
 
       <div className="flex-1 flex items-center justify-center px-4 py-12">
@@ -65,7 +66,7 @@ export default function Signup() {
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder="John Smith"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#1d4ed8] focus:border-transparent transition-all"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -76,7 +77,7 @@ export default function Signup() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#1d4ed8] focus:border-transparent transition-all"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -88,14 +89,14 @@ export default function Signup() {
                   onChange={e => setPassword(e.target.value)}
                   placeholder="Min. 8 characters"
                   minLength={8}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#1d4ed8] focus:border-transparent transition-all"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#1d4ed8] hover:bg-[#2563eb] text-white font-bold py-3.5 rounded-xl transition-all mt-1 disabled:opacity-60"
+                className="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3.5 rounded-xl transition-all mt-1 disabled:opacity-60"
               >
                 {loading ? 'Creating account…' : 'Create Account & Book'}
               </button>

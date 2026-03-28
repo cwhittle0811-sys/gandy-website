@@ -1,11 +1,12 @@
+import GandyLogo from '../components/GandyLogo'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 
 export default function Terms() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <nav className="bg-[#1d4ed8] px-6 py-4">
-        <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
+      <nav className="bg-black px-6 py-4">
+        <Link to="/"><GandyLogo markSize={32} /></Link>
       </nav>
       <div className="flex-1 max-w-2xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">Terms of Service</h1>

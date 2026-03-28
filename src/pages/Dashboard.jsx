@@ -1,3 +1,4 @@
+import GandyLogo from '../components/GandyLogo'
 import Footer from '../components/Footer'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -49,8 +50,8 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <nav className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between shadow-lg">
-        <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
+      <nav className="bg-black px-6 py-4 flex items-center justify-between shadow-lg">
+        <Link to="/"><GandyLogo markSize={32} /></Link>
         <div className="flex items-center gap-4">
           <span className="text-white/60 text-sm hidden sm:block">{user?.email}</span>
           <button onClick={handleSignOut} className="text-white/70 hover:text-white text-sm transition-colors">
@@ -67,7 +68,7 @@ export default function Dashboard() {
           </div>
           <Link
             to="/book"
-            className="bg-white hover:bg-sky-50 text-[#1d4ed8] font-bold px-5 py-2.5 rounded-full text-sm transition-all shadow"
+            className="bg-white hover:bg-sky-50 text-sky-500 font-bold px-5 py-2.5 rounded-full text-sm transition-all shadow"
           >
             + Book Lesson
           </Link>
@@ -117,7 +118,7 @@ function BookingCard({ booking, onCancel, isPast }) {
     <div className={`bg-white rounded-2xl shadow-sm border p-6 transition-all ${isPast ? 'opacity-60 border-gray-100' : 'border-gray-100 hover:shadow-md'}`}>
       <div className="flex items-start justify-between gap-4">
         <div className="flex gap-4 items-start">
-          <div className="bg-[#1d4ed8] text-white rounded-xl px-3 py-2 text-center min-w-[52px] shrink-0">
+          <div className="bg-sky-500 text-white rounded-xl px-3 py-2 text-center min-w-[52px] shrink-0">
             <div className="text-xs font-semibold opacity-70 uppercase">{format(date, 'MMM')}</div>
             <div className="text-2xl font-bold leading-none">{format(date, 'd')}</div>
           </div>

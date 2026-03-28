@@ -1,3 +1,4 @@
+import GandyLogo from '../components/GandyLogo'
 import Footer from '../components/Footer'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -108,9 +109,9 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <nav className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between shadow-lg">
+      <nav className="bg-black px-6 py-4 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
+          <Link to="/"><GandyLogo markSize={32} /></Link>
           <span className="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full">ADMIN</span>
         </div>
         <button onClick={handleSignOut} className="text-white/70 hover:text-white text-sm transition-colors">
@@ -131,7 +132,7 @@ export default function AdminDashboard() {
             { label: 'Total Bookings', value: totalCount },
           ].map((s, i) => (
             <div key={i} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 text-center">
-              <div className="text-3xl font-bold text-[#1d4ed8]">{s.value}</div>
+              <div className="text-3xl font-bold text-sky-500">{s.value}</div>
               <div className="text-sm text-gray-500 mt-1">{s.label}</div>
             </div>
           ))}
@@ -141,13 +142,13 @@ export default function AdminDashboard() {
           <div className="flex bg-white border border-gray-200 rounded-xl overflow-hidden">
             <button
               onClick={() => setView('day')}
-              className={`px-5 py-2.5 text-sm font-semibold transition-all ${view === 'day' ? 'bg-[#1d4ed8] text-white' : 'text-gray-500 hover:text-gray-900'}`}
+              className={`px-5 py-2.5 text-sm font-semibold transition-all ${view === 'day' ? 'bg-sky-500 text-white' : 'text-gray-500 hover:text-gray-900'}`}
             >
               Day View
             </button>
             <button
               onClick={() => setView('all')}
-              className={`px-5 py-2.5 text-sm font-semibold transition-all ${view === 'all' ? 'bg-[#1d4ed8] text-white' : 'text-gray-500 hover:text-gray-900'}`}
+              className={`px-5 py-2.5 text-sm font-semibold transition-all ${view === 'all' ? 'bg-sky-500 text-white' : 'text-gray-500 hover:text-gray-900'}`}
             >
               All Bookings
             </button>
@@ -164,7 +165,7 @@ export default function AdminDashboard() {
               type="date"
               value={selectedDate}
               onChange={e => setSelectedDate(e.target.value)}
-              className="border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#1d4ed8] bg-white"
+              className="border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-sky-500 bg-white"
             />
           )}
 
@@ -174,7 +175,7 @@ export default function AdminDashboard() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search lesson type, phone, notes…"
-              className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#1d4ed8] bg-white"
+              className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-sky-500 bg-white"
             />
           )}
         </div>
@@ -193,7 +194,7 @@ export default function AdminDashboard() {
                     className={`flex items-start gap-4 rounded-2xl border p-5 transition-all
                       ${booking ? 'bg-white border-gray-100 shadow-sm' : 'bg-slate-50 border-dashed border-gray-200'}`}
                   >
-                    <div className={`text-sm font-bold w-20 shrink-0 pt-0.5 ${booking ? 'text-[#1d4ed8]' : 'text-gray-300'}`}>
+                    <div className={`text-sm font-bold w-20 shrink-0 pt-0.5 ${booking ? 'text-sky-500' : 'text-gray-300'}`}>
                       {slot}
                     </div>
                     {booking ? (
@@ -237,7 +238,7 @@ export default function AdminDashboard() {
                       <div key={booking.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex gap-4 items-start">
-                            <div className="bg-[#1d4ed8] text-white rounded-xl px-3 py-2 text-center min-w-[60px] shrink-0">
+                            <div className="bg-sky-500 text-white rounded-xl px-3 py-2 text-center min-w-[60px] shrink-0">
                               <div className="text-xs font-semibold opacity-70 uppercase">{format(parseISO(date), 'MMM')}</div>
                               <div className="text-xl font-bold leading-none">{format(parseISO(date), 'd')}</div>
                               <div className="text-xs opacity-70 mt-0.5">{booking.time_slot}</div>
@@ -279,13 +280,13 @@ export default function AdminDashboard() {
                 <div className="flex bg-gray-100 rounded-xl overflow-hidden">
                   <button
                     onClick={() => setBlockMode('day')}
-                    className={`px-4 py-2.5 text-sm font-semibold transition-all ${blockMode === 'day' ? 'bg-[#1d4ed8] text-white' : 'text-gray-500 hover:text-gray-900'}`}
+                    className={`px-4 py-2.5 text-sm font-semibold transition-all ${blockMode === 'day' ? 'bg-sky-500 text-white' : 'text-gray-500 hover:text-gray-900'}`}
                   >
                     Single Day
                   </button>
                   <button
                     onClick={() => setBlockMode('week')}
-                    className={`px-4 py-2.5 text-sm font-semibold transition-all ${blockMode === 'week' ? 'bg-[#1d4ed8] text-white' : 'text-gray-500 hover:text-gray-900'}`}
+                    className={`px-4 py-2.5 text-sm font-semibold transition-all ${blockMode === 'week' ? 'bg-sky-500 text-white' : 'text-gray-500 hover:text-gray-900'}`}
                   >
                     Full Week
                   </button>

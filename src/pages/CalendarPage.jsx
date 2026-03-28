@@ -1,3 +1,4 @@
+import GandyLogo from '../components/GandyLogo'
 import Footer from '../components/Footer'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -93,15 +94,15 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <nav className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between shadow-lg">
-        <Link to="/" className="text-white font-bold text-lg tracking-tight">Gandy Golf</Link>
+      <nav className="bg-black px-6 py-4 flex items-center justify-between shadow-lg">
+        <Link to="/"><GandyLogo markSize={32} /></Link>
         <div className="flex gap-3 items-center">
           {session ? (
             <Link to="/dashboard" className="text-white/80 hover:text-white text-sm font-medium px-4 py-2 transition-colors">My Lessons</Link>
           ) : (
             <Link to="/login" className="text-white/80 hover:text-white text-sm font-medium px-4 py-2 transition-colors">Log In</Link>
           )}
-          <Link to="/book" className="bg-white hover:bg-sky-50 text-[#1d4ed8] text-sm font-bold px-5 py-2 rounded-full transition-all">Book Now</Link>
+          <Link to="/book" className="bg-white hover:bg-sky-50 text-sky-500 text-sm font-bold px-5 py-2 rounded-full transition-all">Book Now</Link>
         </div>
       </nav>
 
@@ -113,7 +114,7 @@ export default function CalendarPage() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="bg-[#1d4ed8] px-6 py-4 flex items-center justify-between">
+          <div className="bg-black px-6 py-4 flex items-center justify-between">
             <button
               onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
               className="text-white/70 hover:text-white transition-colors text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
@@ -163,12 +164,12 @@ export default function CalendarPage() {
                       ${blocked ? 'bg-gray-100 cursor-not-allowed' : ''}
                       ${inMonth && !past && !unavailable ? 'hover:bg-green-50 cursor-pointer' : ''}
                       ${inMonth && !past && booked ? 'bg-red-50 cursor-not-allowed' : ''}
-                      ${selected ? 'ring-2 ring-inset ring-[#1d4ed8] bg-sky-50' : ''}
+                      ${selected ? 'ring-2 ring-inset ring-sky-500 bg-sky-50' : ''}
                     `}
                   >
                     <span className={`
                       w-8 h-8 flex items-center justify-center rounded-full text-sm
-                      ${today ? 'bg-[#1d4ed8] text-white font-bold' : ''}
+                      ${today ? 'bg-sky-500 text-white font-bold' : ''}
                       ${blocked ? 'text-gray-400' : ''}
                       ${inMonth && !past && !today && !blocked ? 'text-gray-700' : ''}
                     `}>

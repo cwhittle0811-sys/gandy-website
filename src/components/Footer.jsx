@@ -1,21 +1,24 @@
 import { Link } from 'react-router-dom'
+import GandyLogo from './GandyLogo'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white/50 text-sm py-8 px-6 text-center">
-      <p className="text-white/70 mb-1">
-        Questions? Email us at{' '}
-        <a
-          href="mailto:info@gandygolf.com"
-          className="text-sky-300 hover:text-sky-200 transition-colors font-medium"
-        >
-          info@gandygolf.com
-        </a>
-      </p>
-      <p className="mb-3">© {new Date().getFullYear()} Gandy Golf Lessons</p>
-      <div className="flex justify-center gap-4">
-        <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-        <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+    <footer className="bg-black text-white/40 text-sm py-10 px-6">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        <GandyLogo markSize={30} />
+        <div className="flex flex-col sm:flex-row items-center gap-4 text-xs">
+          <a
+            href="mailto:info@gandygolf.com"
+            className="text-white/50 hover:text-sky-400 transition-colors"
+          >
+            info@gandygolf.com
+          </a>
+          <span className="hidden sm:block text-white/20">·</span>
+          <Link to="/terms" className="hover:text-white/70 transition-colors">Terms</Link>
+          <Link to="/privacy" className="hover:text-white/70 transition-colors">Privacy</Link>
+          <span className="hidden sm:block text-white/20">·</span>
+          <span>© {new Date().getFullYear()} Gandy Golf Lessons</span>
+        </div>
       </div>
     </footer>
   )
