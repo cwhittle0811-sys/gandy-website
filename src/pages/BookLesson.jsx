@@ -140,8 +140,8 @@ export default function BookLesson() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign in to book</h2>
             <p className="text-gray-500 mb-6">You need an account to schedule a lesson.</p>
             <div className="flex flex-col gap-3">
-              <Link to="/signup" className="bg-white hover:bg-sky-50 text-sky-500 font-bold py-3 rounded-full transition-all">Create Account</Link>
-              <Link to="/login" className="bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-full transition-all">Sign In</Link>
+              <Link to="/signup" className="bg-white hover:bg-green-50 text-green-700 font-bold py-3 rounded-full transition-all">Create Account</Link>
+              <Link to="/login" className="bg-green-700 hover:bg-green-600 text-white font-bold py-3 rounded-full transition-all">Sign In</Link>
             </div>
           </div>
         </div>
@@ -165,8 +165,8 @@ export default function BookLesson() {
             <p className="text-gray-600 font-semibold mb-1">{timeSlot}</p>
             <p className="text-gray-400 text-sm mb-6">{lessonType} — see you on the course!</p>
             <div className="flex flex-col gap-3">
-              <Link to="/dashboard" className="bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-full transition-all">View My Lessons</Link>
-              <Link to="/" className="text-sky-500 font-semibold hover:text-sky-600 py-2">Back to Home</Link>
+              <Link to="/dashboard" className="bg-green-700 hover:bg-green-600 text-white font-bold py-3 rounded-full transition-all">View My Lessons</Link>
+              <Link to="/" className="text-green-700 font-semibold hover:text-green-800 py-2">Back to Home</Link>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function BookLesson() {
       <div className="flex-1 px-4 py-12">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-8">
-            <p className="text-sky-500 font-semibold uppercase tracking-widest text-sm mb-2">Schedule a Session</p>
+            <p className="text-green-700 font-semibold uppercase tracking-widest text-sm mb-2">Schedule a Session</p>
             <h1 className="text-3xl font-bold text-gray-900">Book a Golf Lesson</h1>
           </div>
 
@@ -202,7 +202,7 @@ export default function BookLesson() {
                 <select
                   value={lessonType}
                   onChange={e => setLessonType(e.target.value)}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all bg-white"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent transition-all bg-white"
                 >
                   {LESSON_TYPES.map(t => <option key={t}>{t}</option>)}
                 </select>
@@ -217,7 +217,7 @@ export default function BookLesson() {
                   value={date}
                   min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
                   onChange={e => setDate(e.target.value)}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent transition-all"
                 />
               </div>
 
@@ -246,8 +246,8 @@ export default function BookLesson() {
                           onClick={() => { setStartTime(slot); setDuration(0) }}
                           className={`py-2.5 rounded-xl text-sm font-medium border transition-all
                             ${taken ? 'bg-gray-100 text-gray-300 border-gray-100 cursor-not-allowed line-through' : ''}
-                            ${selected ? 'bg-sky-500 border-sky-500 text-white font-bold shadow-md' : ''}
-                            ${!taken && !selected ? 'bg-white border-gray-200 text-gray-700 hover:border-sky-400 hover:bg-sky-50' : ''}
+                            ${selected ? 'bg-green-700 border-green-700 text-white font-bold shadow-md' : ''}
+                            ${!taken && !selected ? 'bg-white border-gray-200 text-gray-700 hover:border-green-600 hover:bg-green-50' : ''}
                           `}
                         >
                           {taken ? 'Booked' : slot}
@@ -273,8 +273,8 @@ export default function BookLesson() {
                           onClick={() => setDuration(d)}
                           className={`flex-1 py-3 rounded-xl text-sm font-semibold border transition-all
                             ${duration === d
-                              ? 'bg-sky-500 border-sky-500 text-white shadow-md'
-                              : 'bg-white border-gray-200 text-gray-700 hover:border-sky-400 hover:bg-sky-50'
+                              ? 'bg-green-700 border-green-700 text-white shadow-md'
+                              : 'bg-white border-gray-200 text-gray-700 hover:border-green-600 hover:bg-green-50'
                             }`}
                         >
                           {d} hr{d > 1 ? 's' : ''}
@@ -283,7 +283,7 @@ export default function BookLesson() {
                     )}
                   </div>
                   {duration > 0 && (
-                    <p className="text-xs text-sky-600 font-semibold mt-2">
+                    <p className="text-xs text-green-700 font-semibold mt-2">
                       {startTime} – {endTime} ({duration} hour{duration > 1 ? 's' : ''})
                     </p>
                   )}
@@ -299,7 +299,7 @@ export default function BookLesson() {
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                   placeholder="(555) 555-0123"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent transition-all"
                 />
               </div>
 
@@ -310,7 +310,7 @@ export default function BookLesson() {
                   required
                   value={experience}
                   onChange={e => setExperience(e.target.value)}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all bg-white"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent transition-all bg-white"
                 >
                   <option value="">Select your level…</option>
                   <option>Complete beginner</option>
@@ -332,14 +332,14 @@ export default function BookLesson() {
                   placeholder="e.g. Want to improve my driver, fix a slice, work on short game…"
                   rows={3}
                   maxLength={500}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all resize-none"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent transition-all resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting || !startTime || !duration}
-                className="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-60 shadow-lg"
+                className="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-60 shadow-lg"
               >
                 {submitting ? 'Booking…' : 'Confirm Lesson'}
               </button>

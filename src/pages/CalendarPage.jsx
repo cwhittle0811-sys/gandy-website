@@ -102,13 +102,13 @@ export default function CalendarPage() {
           ) : (
             <Link to="/login" className="text-white/80 hover:text-white text-sm font-medium px-4 py-2 transition-colors">Log In</Link>
           )}
-          <Link to="/book" className="bg-white hover:bg-sky-50 text-sky-500 text-sm font-bold px-5 py-2 rounded-full transition-all">Book Now</Link>
+          <Link to="/book" className="bg-white hover:bg-green-50 text-green-700 text-sm font-bold px-5 py-2 rounded-full transition-all">Book Now</Link>
         </div>
       </nav>
 
       <div className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
-          <p className="text-sky-500 font-semibold uppercase tracking-widest text-sm mb-2">Live Schedule</p>
+          <p className="text-green-700 font-semibold uppercase tracking-widest text-sm mb-2">Live Schedule</p>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Availability Calendar</h1>
           <p className="text-gray-500">Green = available · Red = fully booked. Click a day to see open time slots.</p>
         </div>
@@ -164,12 +164,12 @@ export default function CalendarPage() {
                       ${blocked ? 'bg-gray-100 cursor-not-allowed' : ''}
                       ${inMonth && !past && !unavailable ? 'hover:bg-green-50 cursor-pointer' : ''}
                       ${inMonth && !past && booked ? 'bg-red-50 cursor-not-allowed' : ''}
-                      ${selected ? 'ring-2 ring-inset ring-sky-500 bg-sky-50' : ''}
+                      ${selected ? 'ring-2 ring-inset ring-green-700 bg-green-50' : ''}
                     `}
                   >
                     <span className={`
                       w-8 h-8 flex items-center justify-center rounded-full text-sm
-                      ${today ? 'bg-sky-500 text-white font-bold' : ''}
+                      ${today ? 'bg-green-700 text-white font-bold' : ''}
                       ${blocked ? 'text-gray-400' : ''}
                       ${inMonth && !past && !today && !blocked ? 'text-gray-700' : ''}
                     `}>
@@ -192,7 +192,7 @@ export default function CalendarPage() {
               <Link
                 to="/book"
                 state={{ date: format(selectedDay, 'yyyy-MM-dd') }}
-                className="bg-white hover:bg-sky-50 text-gray-900 font-bold px-5 py-2 rounded-full text-sm transition-all"
+                className="bg-white hover:bg-green-50 text-gray-900 font-bold px-5 py-2 rounded-full text-sm transition-all"
               >
                 Book This Day
               </Link>
