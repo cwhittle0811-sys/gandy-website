@@ -9,13 +9,28 @@ const TIME_SLOTS = [
   '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM',
 ]
 
+// END_TIMES[i] = the end label when starting at TIME_SLOTS[i]
+const END_TIMES = [
+  '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+  '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
+]
+
 const LESSON_TYPES = [
-  'Individual Lesson (60 min)',
-  'Individual Lesson (30 min)',
+  'Individual Lesson',
   'Group Clinic',
   'Junior Lesson',
   'On-Course Playing Lesson',
 ]
+
+// Expand a stored time_slot (e.g. "9:00 AM – 11:00 AM") to individual hour slots
+function expandSlot(slot) {
+  if (!slot.includes(' – ')) return [slot]
+  const [start, end] = slot.split(' – ')
+  const si = TIME_SLOTS.indexOf(start)
+  const ei = END_TIMES.indexOf(end)
+  if (si === -1 || ei === -1) return [slot]
+  return TIME_SLOTS.slice(si, ei + 1)
+}
 
 export default function BookLesson() {
   const navigate = useNavigate()
@@ -25,12 +40,13 @@ export default function BookLesson() {
   const [authLoading, setAuthLoading] = useState(true)
 
   const [date, setDate] = useState(location.state?.date || format(addDays(new Date(), 1), 'yyyy-MM-dd'))
-  const [timeSlot, setTimeSlot] = useState('')
+  const [startTime, setStartTime] = useState('')
+  const [duration, setDuration] = useState(0)
   const [lessonType, setLessonType] = useState(LESSON_TYPES[0])
   const [phone, setPhone] = useState('')
   const [experience, setExperience] = useState('')
   const [notes, setNotes] = useState('')
-  const [bookedSlots, setBookedSlots] = useState([])
+  const [rawBookedSlots, setRawBookedSlots] = useState([])
   const [isDateBlocked, setIsDateBlocked] = useState(false)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -45,11 +61,13 @@ export default function BookLesson() {
 
   useEffect(() => {
     if (!date) return
+    setStartTime('')
+    setDuration(0)
     supabase
       .from('bookings')
       .select('time_slot')
       .eq('date', date)
-      .then(({ data }) => setBookedSlots((data || []).map(b => b.time_slot)))
+      .then(({ data }) => setRawBookedSlots((data || []).map(b => b.time_slot)))
     supabase
       .from('blocked_dates')
       .select('id')
@@ -57,10 +75,30 @@ export default function BookLesson() {
       .then(({ data }) => setIsDateBlocked((data || []).length > 0))
   }, [date])
 
+  // Expand all stored slots to individual occupied hours
+  const occupiedHours = rawBookedSlots.flatMap(expandSlot)
+
+  function maxDurationFrom(start) {
+    const si = TIME_SLOTS.indexOf(start)
+    let count = 0
+    for (let i = si; i < TIME_SLOTS.length; i++) {
+      if (occupiedHours.includes(TIME_SLOTS[i])) break
+      count++
+    }
+    return Math.min(count, 3)
+  }
+
+  const durationOptions = startTime ? [1, 2, 3].filter(d => d <= maxDurationFrom(startTime)) : []
+
+  const si = TIME_SLOTS.indexOf(startTime)
+  const endTime = duration > 0 && si !== -1 ? END_TIMES[si + duration - 1] : ''
+  const timeSlot = startTime && duration > 0 ? `${startTime} – ${endTime}` : ''
+
   async function handleSubmit(e) {
     e.preventDefault()
     if (isDateBlocked) { setError('This date is unavailable. Please choose a different date.'); return }
-    if (!timeSlot) { setError('Please select a time slot.'); return }
+    if (!startTime) { setError('Please select a start time.'); return }
+    if (!duration) { setError('Please select a duration.'); return }
     if (!/^[\d\s\-\+\(\)]{7,20}$/.test(phone.trim())) {
       setError('Please enter a valid phone number.')
       return
@@ -121,8 +159,9 @@ export default function BookLesson() {
             <div className="text-6xl mb-4">⛳</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">You're booked!</h2>
             <p className="text-gray-500 mb-2">
-              <span className="font-semibold text-gray-700">{format(new Date(date + 'T12:00:00'), 'EEEE, MMMM d')}</span> at <span className="font-semibold text-gray-700">{timeSlot}</span>
+              <span className="font-semibold text-gray-700">{format(new Date(date + 'T12:00:00'), 'EEEE, MMMM d')}</span>
             </p>
+            <p className="text-gray-600 font-semibold mb-1">{timeSlot}</p>
             <p className="text-gray-400 text-sm mb-6">{lessonType} — see you on the course!</p>
             <div className="flex flex-col gap-3">
               <Link to="/dashboard" className="bg-[#1d4ed8] hover:bg-[#2563eb] text-white font-bold py-3 rounded-full transition-all">View My Lessons</Link>
@@ -176,16 +215,18 @@ export default function BookLesson() {
                   required
                   value={date}
                   min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
-                  onChange={e => { setDate(e.target.value); setTimeSlot('') }}
+                  onChange={e => setDate(e.target.value)}
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#1d4ed8] focus:border-transparent transition-all"
                 />
               </div>
 
-              {/* Time slots */}
+              {/* Start Time */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="block text-sm font-medium text-gray-700">Select Time Slot</label>
-                  {!isDateBlocked && <span className="text-xs text-gray-400">{bookedSlots.length} slot{bookedSlots.length !== 1 ? 's' : ''} taken</span>}
+                  <label className="block text-sm font-medium text-gray-700">Start Time</label>
+                  {!isDateBlocked && occupiedHours.length > 0 && (
+                    <span className="text-xs text-gray-400">{occupiedHours.length} hour{occupiedHours.length !== 1 ? 's' : ''} booked</span>
+                  )}
                 </div>
                 {isDateBlocked ? (
                   <div className="bg-gray-50 border border-gray-200 text-gray-600 text-sm rounded-xl px-4 py-3">
@@ -194,17 +235,17 @@ export default function BookLesson() {
                 ) : (
                   <div className="grid grid-cols-3 gap-2">
                     {TIME_SLOTS.map(slot => {
-                      const taken = bookedSlots.includes(slot)
-                      const selected = timeSlot === slot
+                      const taken = occupiedHours.includes(slot)
+                      const selected = startTime === slot
                       return (
                         <button
                           key={slot}
                           type="button"
                           disabled={taken}
-                          onClick={() => !taken && setTimeSlot(slot)}
+                          onClick={() => { setStartTime(slot); setDuration(0) }}
                           className={`py-2.5 rounded-xl text-sm font-medium border transition-all
                             ${taken ? 'bg-gray-100 text-gray-300 border-gray-100 cursor-not-allowed line-through' : ''}
-                            ${selected ? 'bg-white border-sky-400 text-gray-900 font-bold shadow-md' : ''}
+                            ${selected ? 'bg-[#1d4ed8] border-[#1d4ed8] text-white font-bold shadow-md' : ''}
                             ${!taken && !selected ? 'bg-white border-gray-200 text-gray-700 hover:border-sky-400 hover:bg-sky-50' : ''}
                           `}
                         >
@@ -215,6 +256,38 @@ export default function BookLesson() {
                   </div>
                 )}
               </div>
+
+              {/* Duration */}
+              {startTime && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+                  <div className="flex gap-3">
+                    {durationOptions.length === 0 ? (
+                      <p className="text-sm text-gray-400 italic">No available duration from this start time.</p>
+                    ) : (
+                      durationOptions.map(d => (
+                        <button
+                          key={d}
+                          type="button"
+                          onClick={() => setDuration(d)}
+                          className={`flex-1 py-3 rounded-xl text-sm font-semibold border transition-all
+                            ${duration === d
+                              ? 'bg-[#1d4ed8] border-[#1d4ed8] text-white shadow-md'
+                              : 'bg-white border-gray-200 text-gray-700 hover:border-sky-400 hover:bg-sky-50'
+                            }`}
+                        >
+                          {d} hr{d > 1 ? 's' : ''}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                  {duration > 0 && (
+                    <p className="text-xs text-sky-600 font-semibold mt-2">
+                      {startTime} – {endTime} ({duration} hour{duration > 1 ? 's' : ''})
+                    </p>
+                  )}
+                </div>
+              )}
 
               {/* Phone */}
               <div>
@@ -264,7 +337,7 @@ export default function BookLesson() {
 
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || !startTime || !duration}
                 className="w-full bg-[#1d4ed8] hover:bg-[#2563eb] text-white font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-60 shadow-lg"
               >
                 {submitting ? 'Booking…' : 'Confirm Lesson'}

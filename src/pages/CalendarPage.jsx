@@ -22,6 +22,19 @@ const TIME_SLOTS = [
   '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM',
   '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM',
 ]
+const END_TIMES = [
+  '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+  '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
+]
+
+function expandSlot(slot) {
+  if (!slot.includes(' – ')) return [slot]
+  const [start, end] = slot.split(' – ')
+  const si = TIME_SLOTS.indexOf(start)
+  const ei = END_TIMES.indexOf(end)
+  if (si === -1 || ei === -1) return [slot]
+  return TIME_SLOTS.slice(si, ei + 1)
+}
 
 export default function CalendarPage() {
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -52,13 +65,13 @@ export default function CalendarPage() {
     setLoading(false)
   }
 
-  function getSlotsForDay(date) {
+  function getOccupiedHoursForDay(date) {
     const d = format(date, 'yyyy-MM-dd')
-    return bookedSlots.filter(b => b.date === d).map(b => b.time_slot)
+    return bookedSlots.filter(b => b.date === d).map(b => b.time_slot).flatMap(expandSlot)
   }
 
   function isFullyBooked(date) {
-    return getSlotsForDay(date).length >= TIME_SLOTS.length
+    return getOccupiedHoursForDay(date).length >= TIME_SLOTS.length
   }
 
   function isBlocked(date) {
@@ -76,7 +89,7 @@ export default function CalendarPage() {
     d = addDays(d, 1)
   }
 
-  const selectedBooked = selectedDay ? getSlotsForDay(selectedDay) : []
+  const selectedBooked = selectedDay ? getOccupiedHoursForDay(selectedDay) : []
 
   return (
     <div className="min-h-screen bg-slate-50">
