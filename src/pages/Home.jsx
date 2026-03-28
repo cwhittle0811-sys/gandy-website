@@ -44,7 +44,7 @@ export default function Home() {
           ) : (
             <>
               <Link to="/login" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Log In</Link>
-              <Link to="/signup" className="text-sm font-semibold bg-gray-900 text-white px-5 py-2 rounded hover:bg-gray-700 transition-colors">
+              <Link to="/signup" className="text-sm font-semibold bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 transition-colors">
                 Book a Lesson
               </Link>
             </>
@@ -57,7 +57,7 @@ export default function Home() {
         <div className="flex flex-col gap-8">
 
           {/* Tag line */}
-          <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">
+          <p className="text-sm text-green-700 font-semibold tracking-wide uppercase">
             PGA-Certified Instruction · All Skill Levels
           </p>
 
@@ -80,13 +80,13 @@ export default function Home() {
             <div className="flex gap-3 sm:ml-auto shrink-0">
               <Link
                 to="/book"
-                className="bg-gray-900 hover:bg-gray-700 text-white text-sm font-semibold px-7 py-3 rounded transition-colors"
+                className="bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-7 py-3 rounded transition-colors"
               >
                 Book a Lesson
               </Link>
               <Link
                 to="/calendar"
-                className="border border-gray-200 hover:border-gray-400 text-gray-700 text-sm font-semibold px-7 py-3 rounded transition-colors"
+                className="border border-gray-200 hover:border-green-700 hover:text-green-700 text-gray-700 text-sm font-semibold px-7 py-3 rounded transition-colors"
               >
                 View Schedule
               </Link>
@@ -108,7 +108,7 @@ export default function Home() {
       <section className="px-6 md:px-16 py-20 max-w-6xl mx-auto">
         <div className="flex items-baseline justify-between mb-10">
           <h2 className="text-xl font-bold text-gray-900">Lesson Options</h2>
-          <Link to="/book" className="text-sm text-gray-400 hover:text-gray-900 transition-colors">Book any →</Link>
+          <Link to="/book" className="text-sm text-green-700 hover:text-green-900 transition-colors">Book any →</Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100 rounded-lg overflow-hidden">
@@ -121,7 +121,7 @@ export default function Home() {
             <Link key={s.title} to="/book" className="group bg-white p-7 hover:bg-gray-50 transition-colors">
               <h3 className="font-semibold text-gray-900 text-sm mb-3 group-hover:text-black">{s.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
-              <span className="inline-block mt-5 text-xs text-gray-300 group-hover:text-gray-500 transition-colors">Book →</span>
+              <span className="inline-block mt-5 text-xs text-gray-300 group-hover:text-green-600 transition-colors">Book →</span>
             </Link>
           ))}
         </div>
@@ -149,7 +149,7 @@ export default function Home() {
           <div className="mt-12">
             <Link
               to="/signup"
-              className="inline-block bg-gray-900 hover:bg-gray-700 text-white text-sm font-semibold px-8 py-3 rounded transition-colors"
+              className="inline-block bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-8 py-3 rounded transition-colors"
             >
               Get Started
             </Link>
@@ -170,7 +170,7 @@ export default function Home() {
         </p>
         <Link
           to="/book"
-          className="inline-block bg-gray-900 hover:bg-gray-700 text-white font-semibold px-10 py-3.5 rounded text-sm transition-colors"
+          className="inline-block bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-3.5 rounded text-sm transition-colors"
         >
           Book a Lesson
         </Link>
